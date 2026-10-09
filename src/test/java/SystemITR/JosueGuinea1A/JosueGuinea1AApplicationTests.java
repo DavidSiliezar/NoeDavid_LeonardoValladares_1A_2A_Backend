@@ -1,10 +1,10 @@
-package Evaluacion_David_Leonardo_1A_2A.Evaluacion;
+package SystemITR.JosueGuinea1A;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class EvaluacionApplicationTests {
+class JosueGuinea1AApplicationTests {
 
 	@Test
 	void contextLoads() {
