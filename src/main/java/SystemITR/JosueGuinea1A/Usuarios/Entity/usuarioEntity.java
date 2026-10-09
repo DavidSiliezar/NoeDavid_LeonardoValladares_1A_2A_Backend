@@ -1,6 +1,5 @@
 package SystemITR.JosueGuinea1A.Usuarios.Entity;
 
-
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -9,26 +8,33 @@ import java.util.Date;
 @Table(name = "usuarios")
 public class usuarioEntity {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name = "id_usuario")
-    private long idUsuario;
+    @Column(name = "id_usuario")
+    private Long idUsuario;
 
-    @Column(name = "nombre" , nullable = false , length = 100)
+    @Column(name = "nombre", nullable = false, length = 100)
     private String nombre;
 
-    @Column(name = "correo" , nullable = false , length = 150)
+    @Column(name = "correo", nullable = false, length = 150, unique = true)
     private String correo;
 
-    @Column(name = "fecha_registro" , nullable = false , columnDefinition = "SYSDATE")
+    @Temporal(TemporalType.DATE)
+    @Column(name = "fecha_registro", nullable = false)
     private Date fechaRegistro;
 
-    public long getIdUsuario() {
+    @PrePersist
+    public void prePersist() {
+        if (this.fechaRegistro == null) {
+            this.fechaRegistro = new Date();
+        }
+    }
+
+    public Long getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(long idUsuario) {
+    public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
     }
 

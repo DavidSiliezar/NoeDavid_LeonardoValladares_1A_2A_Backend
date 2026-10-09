@@ -1,47 +1,47 @@
 package SystemITR.JosueGuinea1A.Usuarios.DTO;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import org.hibernate.validator.constraints.UniqueElements;
+import jakarta.validation.constraints.Size;
 
 import java.util.Date;
 
 public class RequestDTO {
 
-
-    @NotBlank(message = "nombre es obligatorio")
+    @NotBlank(message = "El nombre es obligatorio")
+    @Size(max = 100, message = "El nombre no puede exceder 100 caracteres")
     private String nombre;
 
-
-    @NotBlank(message = "correo es obligatorio")
-    @Email
-    @UniqueElements
+    @NotBlank(message = "El correo es obligatorio")
+    @Email(message = "El formato del correo electrónico no es válido")
+    @Size(max = 150, message = "El correo no puede exceder 150 caracteres")
     private String correo;
 
-    @NotBlank(message = "No puede quedar vacio")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date fechaRegistro;
 
-    public @NotBlank(message = "nombre es obligatorio") String getNombre() {
+    public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(@NotBlank(message = "nombre es obligatorio") String nombre) {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public @NotBlank(message = "correo es obligatorio") @Email String getCorreo() {
+    public String getCorreo() {
         return correo;
     }
 
-    public void setCorreo(@NotBlank(message = "correo es obligatorio") @Email String correo) {
+    public void setCorreo(String correo) {
         this.correo = correo;
     }
 
-    public @NotBlank(message = "No puede quedar vacio") Date getFechaRegistro() {
+    public Date getFechaRegistro() {
         return fechaRegistro;
     }
 
-    public void setFechaRegistro(@NotBlank(message = "No puede quedar vacio") Date fechaRegistro) {
+    public void setFechaRegistro(Date fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
 }
