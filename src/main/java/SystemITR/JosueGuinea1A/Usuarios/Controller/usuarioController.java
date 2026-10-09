@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/usuarios")
-@CrossOrigin(origins = "*")
+@CrossOrigin
 public class usuarioController {
 
     private final usuarioService service;
@@ -31,7 +31,7 @@ public class usuarioController {
         List<ResponseDTO> usuarios = service.obtenerTodos();
         ApiResponse<List<ResponseDTO>> response = new ApiResponse<>(
                 HttpStatus.OK.value(),
-                "Lista de usuarios obtenida correctamente",
+                "Lista de usuarios obtenida , no hay mas datos para mostrar",
                 usuarios
         );
         return new ResponseEntity<>(response, HttpStatus.OK);
